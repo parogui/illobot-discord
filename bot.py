@@ -21,7 +21,7 @@ async def on_ready():
     print("Que dise surmano, ya está er tío listo pal cancaneo!")
     channel = bot.get_channel(int(secrets["COMMANDS_CHANNEL_ID"]))
     await channel.send("Que dise surmano, ya está er tío listo pal cancaneo!")
-    print('/pomodoro create focus_length:55 break_length:12 timer_channel:#"Estudio" notification_channel:#🍅pomodoros manager_role:@Illo-bot inactivity_threshold:6 voice_alerts:True name:Pomos-55-12')
+    print('/pomodoro create focus_length:55 break_length:12 timer_channel:#"Estudio" notification_channel:#🍅pomodoros manager_role:@Illo-bot inactivity_threshold:6 voice_alerts:True name:Pomos')
 @bot.event
 async def on_message(message):
     if message.author == bot.user or not message.content.startswith('!') and not bot.user.mentioned_in(message):
