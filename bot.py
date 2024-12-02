@@ -28,7 +28,8 @@ async def on_message(message):
         return
     if message.content.split(' ', 1)[0] not in AVAILABLE_COMMANDS and message.content.split(' ', 1)[0] not in ALT_COMMANDS and message.content.startswith('!'):
         await message.channel.send("Estás más perdío que el barco del arroz... los comandos disponibles son:" + str(AVAILABLE_COMMANDS) + " que no tentera!")
-        print(message.content)
+        channel = bot.get_channel(int(secrets["PETITIONS_CHANNEL_ID"]))
+        await channel.send(message.content)
         return
     if message.content.split(' ', 1)[0].startswith('!baño'):
         await message.channel.send("Ojú, " + str(message.author) + " tú también necesitas ir al baño? No vaya a tardá más que yo, EN?")
