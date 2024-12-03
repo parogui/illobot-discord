@@ -11,7 +11,7 @@ from dotenv import dotenv_values
 secrets=dotenv_values(".env")
 
 # Available commands that are going to be read by the bot
-AVAILABLE_COMMANDS = ["!baño", "!nopucmes", "!help", "!tocate", "!ducha", "!cafe", "!volvi"]
+AVAILABLE_COMMANDS = ["!baño", "!nopucmes", "!help", "!tocate", "!ducha", "!cafe", "!volvi", "!focus"]
 ALT_COMMANDS = ["!tócate", "!duchita", "!café", "!cafecito", "!volví"]
 
 bot = commands.Bot(command_prefix="!", intents=discord.Intents.all())
