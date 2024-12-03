@@ -52,6 +52,9 @@ async def on_message(message):
     if message.content.split(' ', 1)[0].startswith('!cafe') or message.content.split(' ', 1)[0].startswith('!café') or message.content.split(' ', 1)[0].startswith('!cafecito'):
         await message.channel.send("CAFEINAAAAAA!!!!")
         return
+    if message.content.split(' ', 1)[0].startswith('!focus'):
+        await message.channel.send("Cushame, callarze ya que estoy malito de los nervios, me lio a puñalás y me quedo zolo...")
+        return    
     if bot.user.mentioned_in(message):
         await message.channel.send('Que quiere ' + str(message.author) + '???')
         return
