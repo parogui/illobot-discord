@@ -11,7 +11,7 @@ from dotenv import dotenv_values
 secrets=dotenv_values(".env")
 
 # Available commands that are going to be read by the bot
-AVAILABLE_COMMANDS = ["!baño", "!nopucmes", "!help", "!tocate", "!ducha", "!cafe", "!volvi", "!focus","!desayuno","!mirienda"]
+AVAILABLE_COMMANDS = ["!baño", "!nopucmes", "!help", "!tocate", "!ducha", "!cafe", "!volvi", "!focus","!desayuno","!mirienda","!matcha"]
 ALT_COMMANDS = ["!tócate", "!duchita", "!café", "!cafecito", "!volví","!desayunito","!merienda"]
 
 bot = commands.Bot(command_prefix="!", intents=discord.Intents.all())
@@ -60,6 +60,9 @@ async def on_message(message):
         return
     if message.content.split(' ', 1)[0].startswith('!merienda') or message.content.split(' ', 1)[0].startswith('!mirienda'):
         await message.channel.send("Nos paese genial que te vaya a merendá.... pero tráete argo pa compartí con tus coleguita no?")
+        return
+    if message.content.split(' ', 1)[0].startswith('!matcha'):
+        await message.channel.send("MATCHAAA MATCHAAAA queremos MATCHAAA MATCHAAAAAA💃💃")
         return
     if bot.user.mentioned_in(message):
         await message.channel.send('Que quiere ' + str(message.author) + '???')
