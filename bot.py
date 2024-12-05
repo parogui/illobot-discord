@@ -64,8 +64,8 @@ async def on_message(message):
     if message.content.split(' ', 1)[0].startswith('!matcha'):
         await message.channel.send("MATCHAAA MATCHAAAA queremos MATCHAAA MATCHAAAAAA💃💃")
         return
-    if message.content.split(' ', 1)[0].stastswith('!besito'):
-        await message.channel.send('y yo le dije "NO!!", mme giré y me monté en mi bus')
+    if message.content.split(' ', 1)[0].startswith('!besito'):
+        await message.channel.send('y yo le dije \"NO!!\", me giré y me monté en mi bus')
         return
     if bot.user.mentioned_in(message):
         await message.channel.send('Que quiere ' + str(message.author) + '???')
