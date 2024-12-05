@@ -56,7 +56,7 @@ async def on_message(message):
         await message.channel.send("Cushame, callarze ya que estoy malito de los nervios, me lio a puñalás y me quedo zolo...")
         return   
     if message.content.split(' ', 1)[0].startswith('!desayuno') or message.content.split(' ', 1)[0].startswith('!desayunito'):
-        await message.channel.send("Por fin te vas a desayunar, " +str(message.author) + " llevamos media hora escuchándo como te ruge la barriga...")
+        await message.channel.send("Por fin te vas a desayunar, " +str(message.author) + ", llevamos media hora escuchándo como te ruge la barriga...")
         return 
     if bot.user.mentioned_in(message):
         await message.channel.send('Que quiere ' + str(message.author) + '???')
