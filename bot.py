@@ -11,8 +11,8 @@ from dotenv import dotenv_values
 secrets=dotenv_values(".env")
 
 # Available commands that are going to be read by the bot
-AVAILABLE_COMMANDS = ["!baño", "!nopucmes", "!help", "!tocate", "!ducha", "!cafe", "!volvi", "!focus","!desayuno"]
-ALT_COMMANDS = ["!tócate", "!duchita", "!café", "!cafecito", "!volví","!desayunito"]
+AVAILABLE_COMMANDS = ["!baño", "!nopucmes", "!help", "!tocate", "!ducha", "!cafe", "!volvi", "!focus","!desayuno","!mirienda"]
+ALT_COMMANDS = ["!tócate", "!duchita", "!café", "!cafecito", "!volví","!desayunito","!merienda"]
 
 bot = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 
@@ -57,7 +57,10 @@ async def on_message(message):
         return   
     if message.content.split(' ', 1)[0].startswith('!desayuno') or message.content.split(' ', 1)[0].startswith('!desayunito'):
         await message.channel.send("Por fin te vas a desayunar, " +str(message.author) + ", llevamos media hora escuchándo como te ruge la barriga...")
-        return 
+        return
+    if message.content.split(' ', 1)[0].startswith('!merienda') or message.content.split(' ', 1)[0].startswith('!mirienda'):
+        await message.channel.send("Nos paese genial que te vaya a merendá.... pero tráete argo pa compartí con tus coleguita no?")
+        return
     if bot.user.mentioned_in(message):
         await message.channel.send('Que quiere ' + str(message.author) + '???')
         return
