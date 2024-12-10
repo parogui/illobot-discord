@@ -11,7 +11,7 @@ from dotenv import dotenv_values
 secrets=dotenv_values(".env")
 
 # Available commands that are going to be read by the bot
-AVAILABLE_COMMANDS = ["!baño", "!nopucmes", "!help", "!tocate", "!ducha", "!cafe", "!volvi", "!focus","!desayuno","!mirienda","!matcha","!ban","!cosorro"]
+AVAILABLE_COMMANDS = ["!baño", "!nopucmes", "!help", "!tocate", "!ducha", "!cafe", "!volvi", "!focus","!desayuno","!mirienda","!matcha","!ban","!cosorro","!joder"]
 ALT_COMMANDS = ["!tócate", "!duchita", "!café", "!cafecito", "!volví","!desayunito","!merienda","!besito","!BAN"]
 
 bot = commands.Bot(command_prefix="!", intents=discord.Intents.all())
@@ -72,6 +72,9 @@ async def on_message(message):
         return
     if message.content.split(' ', 1)[0].startswith('!cosorro'):
         await message.channel.send('AY COSORRO, por la viejita, que arguien me ayude... !nopucmes')
+        return
+    if message.content.split(' ', 1)[0].startswith('!joder'):
+        await message.channel.send('Joé shikillo yastabien no? Qué jartura...')
         return
     if bot.user.mentioned_in(message):
         await message.channel.send('Que quiere ' + str(message.author) + '???')
