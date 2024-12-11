@@ -81,6 +81,8 @@ async def on_message(message):
         return
     if message.content.split(' ', 1)[0].startswith('!pablotequeremos'):
         await message.channel.send('YO SI QUE OS QUIERO A USTEDE, CRIATURILLAS!!!')
+        channel = bot.get_channel(int(secrets["PETITIONS_CHANNEL_ID"]))
+        await channel.send(message.content)
         return
     if bot.user.mentioned_in(message):
         await message.channel.send('Que quiere ' + str(message.author) + '???')
