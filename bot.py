@@ -12,7 +12,7 @@ secrets=dotenv_values(".env")
 
 # Available commands that are going to be read by the bot
 AVAILABLE_COMMANDS = ["!baño", "!nopucmes", "!help", "!tocate", "!ducha", "!cafe", "!volvi", "!focus","!desayuno","!mirienda","!matcha","!ban","!cosorro","!joder","!frio"]
-ALT_COMMANDS = ["!tócate", "!duchita", "!café", "!cafecito", "!volví","!desayunito","!merienda","!besito","!BAN","!frío"]
+ALT_COMMANDS = ["!tócate", "!duchita", "!café", "!cafecito", "!volví","!desayunito","!merienda","!besito","!BAN","!frío","!pablotequeremos"]
 
 bot = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 
@@ -78,6 +78,9 @@ async def on_message(message):
         return
     if message.content.split(' ', 1)[0].startswith('!frio') or message.content.split(' ', 1)[0].startswith('!frío'):
         await message.channel.send('https://i.pinimg.com/originals/a6/fb/bb/a6fbbb147c557a0bdcc78dacc529fe4f.gif')
+        return
+    if message.content.split(' ', 1)[0].startswith('!pablotequeremos'):
+        await message.channel.send('YO SI QUE OS QUIERO A USTEDE, CRIATURILLAS!!!')
         return
     if bot.user.mentioned_in(message):
         await message.channel.send('Que quiere ' + str(message.author) + '???')
