@@ -11,8 +11,8 @@ from dotenv import dotenv_values
 secrets=dotenv_values(".env")
 
 # Available commands that are going to be read by the bot
-AVAILABLE_COMMANDS = ["!baño", "!nopucmes", "!help", "!tocate", "!ducha", "!cafe", "!volvi", "!focus","!desayuno","!mirienda","!matcha","!ban","!cosorro","!joder"]
-ALT_COMMANDS = ["!tócate", "!duchita", "!café", "!cafecito", "!volví","!desayunito","!merienda","!besito","!BAN"]
+AVAILABLE_COMMANDS = ["!baño", "!nopucmes", "!help", "!tocate", "!ducha", "!cafe", "!volvi", "!focus","!desayuno","!mirienda","!matcha","!ban","!cosorro","!joder","!frio"]
+ALT_COMMANDS = ["!tócate", "!duchita", "!café", "!cafecito", "!volví","!desayunito","!merienda","!besito","!BAN","!frío"]
 
 bot = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 
@@ -75,6 +75,9 @@ async def on_message(message):
         return
     if message.content.split(' ', 1)[0].startswith('!joder'):
         await message.channel.send('Joé shikillo yastabien no? Qué jartura...')
+        return
+    if message.content.split(' ', 1)[0].startswith('!frio') or message.content.split(' ', 1)[0].startswith('!frío'):
+        await message.channel.send('https://i.pinimg.com/originals/a6/fb/bb/a6fbbb147c557a0bdcc78dacc529fe4f.gif')
         return
     if bot.user.mentioned_in(message):
         await message.channel.send('Que quiere ' + str(message.author) + '???')
