@@ -4,6 +4,7 @@ import discord
 
 intents = discord.Intents.default()
 intents.message_content = True
+intents.voice_states = True
 client = discord.Client(intents=intents)
 
 #Load environment variables
@@ -22,6 +23,29 @@ async def on_ready():
     channel = bot.get_channel(int(secrets["COMMANDS_CHANNEL_ID"]))
     await channel.send("Que dise surmano, ya está er tío listo pal cancaneo!")
     print('/pomodoro create focus_length:55 break_length:12 timer_channel:#"Estudio" notification_channel:#🍅pomodoros manager_role:@Illo-bot inactivity_threshold:6 voice_alerts:True name:Pomos')
+
+## Función para mutear a todo aquel que se mueva al canal de estudio, incluidos admins
+@bot.event
+async def on_voice_state_update(member, before, after):
+    if after.channel:
+        ## Mute si entras al canal de estudio desde 0
+        if not before.channel and str(after.channel.id) == secrets['STUDY_CHANNEL_ID']:
+            await member.edit(mute=True)
+            return
+        ## Unmute si entras al canal de descanso desde 0
+        if not before.channel and str(after.channel.id) == secrets['BREAK_CHANNEL_ID']:
+            await member.edit(mute=False)
+            return
+        ## Mute si entras al canal de estudio desde el descanso
+        if str(before.channel.id) == secrets['BREAK_CHANNEL_ID'] and str(after.channel.id) == secrets['STUDY_CHANNEL_ID']:
+            await member.edit(mute=True)
+            return
+        ## Unmute si entras al canal de descanso desde el estudio
+        if str(before.channel.id) == secrets['STUDY_CHANNEL_ID'] and str(after.channel.id) == secrets['BREAK_CHANNEL_ID']:
+            await member.edit(mute=False)
+            return
+
+
 @bot.event
 async def on_message(message):
     if message.author == bot.user or not message.content.startswith('!') and not bot.user.mentioned_in(message):
