@@ -1,10 +1,14 @@
 #Start the Discord intent
-from discord.ext import commands
+from discord.ext import commands,tasks
+from discord.utils import get
 import discord
+import random
+import asyncio
 
 intents = discord.Intents.default()
 intents.message_content = True
 intents.voice_states = True
+intents.members = True
 client = discord.Client(intents=intents)
 
 #Load environment variables
@@ -23,7 +27,8 @@ async def on_ready():
     channel = bot.get_channel(int(secrets["COMMANDS_CHANNEL_ID"]))
     await channel.send("Que dise surmano, ya está er tío listo pal cancaneo!")
     print('/pomodoro create focus_length:55 break_length:12 timer_channel:#"Estudio" notification_channel:#🍅pomodoros manager_role:@Illo-bot inactivity_threshold:6 voice_alerts:True name:Pomos')
-
+    random_kick_event.start()
+    
 ## Función para mutear a todo aquel que se mueva al canal de estudio, incluidos admins
 @bot.event
 async def on_voice_state_update(member, before, after):
@@ -45,6 +50,25 @@ async def on_voice_state_update(member, before, after):
             await member.edit(mute=False)
             return
 
+@tasks.loop(minutes=1.0)
+async def random_kick_event():
+    member_secret = get(bot.get_all_members(), id=int(secrets['USER']))
+    if member_secret.voice and member_secret.voice.channel:
+        try:
+            print(f"Mandando al usuario {member_secret} al carajo")
+            await member_secret.move_to(None)
+        except Exception as e:
+            print(f"An unexpected error occurred {e}")
+    else:
+        print(f"El usuario {member_secret} no está conectao, pisha")
+    wait_time = random.randint(150,8000)
+    await asyncio.sleep(wait_time)
+    
+
+@random_kick_event.before_loop
+async def before_random_kick():
+    """Ensures the bot is fully ready before starting the loop."""
+    await bot.wait_until_ready()
 
 @bot.event
 async def on_message(message):
