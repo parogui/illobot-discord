@@ -53,6 +53,8 @@ async def on_voice_state_update(member, before, after):
 @tasks.loop(minutes=1.0)
 async def random_kick_event():
     member_secret = get(bot.get_all_members(), id=int(secrets['USER']))
+    wait_time = random.randint(2000,10000)
+    await asyncio.sleep(wait_time)
     if member_secret.voice and member_secret.voice.channel:
         try:
             print(f"Mandando al usuario {member_secret} al carajo")
@@ -61,8 +63,7 @@ async def random_kick_event():
             print(f"An unexpected error occurred {e}")
     else:
         print(f"El usuario {member_secret} no está conectao, pisha")
-    wait_time = random.randint(150,8000)
-    await asyncio.sleep(wait_time)
+
     
 
 @random_kick_event.before_loop
