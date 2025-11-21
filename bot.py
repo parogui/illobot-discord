@@ -34,7 +34,7 @@ async def on_ready():
 async def on_voice_state_update(member, before, after):
     if after.channel:
         ## Mute si entras al canal de estudio desde 0
-        if not before.channel and str(after.channel.id) == secrets['STUDY_CHANNEL_ID']:
+        if not before.channel and (str(after.channel.id) == secrets['STUDY_CHANNEL_ID'] or str(after.channel.id) == secrets['ZONA_SEGURA_CHANNEL_ID']):
             await member.edit(mute=True)
             return
         ## Unmute si entras a algún canal de descanso desde 0
@@ -42,11 +42,11 @@ async def on_voice_state_update(member, before, after):
             await member.edit(mute=False)
             return
         ## Mute si entras al canal de estudio desde alguno de descanso
-        if (str(before.channel.id) == secrets['BREAK_CHANNEL_ID'] or str(before.channel.id) == secrets['PETIT_COMITE_CHANNEL_ID']) and str(after.channel.id) == secrets['STUDY_CHANNEL_ID']:
+        if (str(before.channel.id) == secrets['BREAK_CHANNEL_ID'] or str(before.channel.id) == secrets['PETIT_COMITE_CHANNEL_ID']) and (str(after.channel.id) == secrets['STUDY_CHANNEL_ID'] or str(after.channel.id) == secrets['ZONA_SEGURA_CHANNEL_ID']):
             await member.edit(mute=True)
             return
         ## Unmute si entras a algún canal de descanso desde el estudio
-        if str(before.channel.id) == secrets['STUDY_CHANNEL_ID'] and (str(after.channel.id) == secrets['BREAK_CHANNEL_ID'] or str(after.channel.id) == secrets['PETIT_COMITE_CHANNEL_ID']):
+        if (str(before.channel.id) == secrets['STUDY_CHANNEL_ID'] or str(before.channel.id) == secrets['ZONA_SEGURA_CHANNEL_ID']) and (str(after.channel.id) == secrets['BREAK_CHANNEL_ID'] or str(after.channel.id) == secrets['PETIT_COMITE_CHANNEL_ID']):
             await member.edit(mute=False)
             return
 
