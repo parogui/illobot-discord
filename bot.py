@@ -51,11 +51,10 @@ async def on_voice_state_update(member, before, after):
             await member.edit(mute=False)
             return
         ## No se estudia en nochevieja
-        if datetime.datetime(2025, 12, 31, 22) < datetime.datetime.now() < datetime.datetime(2026, 1, 1, 16):
-            print(member.name," a tu casa")
-            await after.channel.send("Repite conmigo, no se estudia hasta el 1 de Enero a las 16")
+        if datetime.datetime(2025, 12, 31, 18) < datetime.datetime.now() < datetime.datetime(2026, 1, 1, 16):
             await member.move_to(None)
-            return
+            await before.channel.send(member.name + " repite conmigo, no se estudia hasta el 1 de Enero a las 16")
+            return    
 
 @tasks.loop(minutes=1.0)
 async def random_kick_event():
