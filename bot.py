@@ -4,6 +4,7 @@ from discord.utils import get
 import discord
 import random
 import asyncio
+import datetime
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -48,6 +49,12 @@ async def on_voice_state_update(member, before, after):
         ## Unmute si entras a algún canal de descanso desde el estudio
         if (str(before.channel.id) == secrets['STUDY_CHANNEL_ID'] or str(before.channel.id) == secrets['ZONA_SEGURA_CHANNEL_ID']) and (str(after.channel.id) == secrets['BREAK_CHANNEL_ID'] or str(after.channel.id) == secrets['PETIT_COMITE_CHANNEL_ID']):
             await member.edit(mute=False)
+            return
+        ## No se estudia en nochevieja
+        if datetime.datetime(2025, 12, 31, 22) < datetime.datetime.now() < datetime.datetime(2026, 1, 1, 16):
+            print(member.name," a tu casa")
+            await after.channel.send("Repite conmigo, no se estudia hasta el 1 de Enero a las 16")
+            await member.move_to(None)
             return
 
 @tasks.loop(minutes=1.0)
